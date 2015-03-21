@@ -1,0 +1,100 @@
+package Chess;
+
+import java.util.ArrayList;
+
+import zen.core.Zen;
+
+public class Bishop extends Piece {
+
+	@Override
+	public Move[] getMoves() {
+		ArrayList <Move> moves = new ArrayList <Move>();
+		int x = getX() + 1;
+		int y = getY() + 1;
+		while(isValid(x,y)){
+			
+				if(isEmpty(x,y) || isOpponent(x,y)) {
+					moves.add(new Move(this, x, y));
+				}
+				 if(! isEmpty(x,y) || isOpponent(x,y)){
+					break;
+				}
+				if(isOpponent(x,y)){
+					break;
+				}
+				x ++;
+				y ++;
+			}
+			 x = getX() - 1;
+			 y = getY() - 1;
+
+			while (isValid(x,y)) {
+				if(isEmpty(x,y) || isOpponent(x,y)) {
+					moves.add(new Move(this, x, y));
+				}
+				 if(! isEmpty(x,y) || isOpponent(x,y)){
+					break;
+				}
+				if(isOpponent(x,y)){
+					break;
+				}
+				x --;
+				y--;
+			}
+			x = getX() + 1;
+			y = getY() - 1;
+			while (isValid(x,y)) {
+				if(isEmpty(x,y) || isOpponent(x,y)) {
+					moves.add(new Move(this, x, y));
+				}
+				 if(! isEmpty(x,y) || isOpponent(x,y)){
+					break;
+				}
+				if(isOpponent(x,y)){
+					break;
+				}
+				x ++;
+				y--;
+				
+			}
+			 x = getX() - 1;
+			 y = getY() + 1;
+
+			while (isValid(x,y)) {
+				if(isEmpty(x,y) || isOpponent(x,y)) {
+					moves.add(new Move(this, x, y));
+				}
+				 if(! isEmpty(x,y) || isOpponent(x,y)){
+					break;
+				}
+				if(isOpponent(x,y)){
+					break;
+				}
+				x --;
+				y ++;
+				
+			}
+			
+		
+		// TODO Auto-generated method stub
+		return moves.toArray(new Move[moves.size()]);
+	}
+
+	@Override
+	public void draw() {
+		int x = getX() * Board.SCALE, 
+	            y = getY() * Board.SCALE, 
+	            s = Board.SCALE;
+
+	        Zen.setColor(getColor());
+	        Zen.fillOval(x + s * 2 / 5, y + s / 8, s / 5, s / 5);
+	        Zen.fillPolygon(
+	            new int[] { x + s / 2, x + s * 3 / 4, x + s / 4 },
+	            new int[] { y + s / 6, y + s / 2, y + s / 2 }
+	        );
+	        Zen.fillRect(x + s / 3, y + s / 2, s / 3, s / 3);
+	        Zen.fillRect(x + s / 4, y + s * 5 / 6, s / 2, s / 10);
+		
+	}
+
+}
